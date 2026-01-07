@@ -1,7 +1,7 @@
 import {
   Authenticated,
   AuthProvider,
-  GitHubBanner,
+  // GitHubBanner,
   Refine,
 } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
@@ -10,9 +10,17 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   RefineSnackbarProvider,
-  ThemedLayout,
   useNotificationProvider,
 } from "@refinedev/mui";
+
+import { ThemedLayout } from "./components/layout"
+import Title from "./components/header/title"
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import TextsmsRoundedIcon from '@mui/icons-material/TextsmsRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -27,21 +35,21 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 import { CredentialResponse } from "./interfaces/google";
-import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "./pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
 import { Login } from "./pages/login";
 import { dataProvider } from "./providers/data";
 import { parseJwt } from "./utils/parse-jwt";
+import {
+    AgentProfile,
+    Agent,
+    PropertyDetail,
+    AllProperties,
+    Home,
+    CreateProperties,
+    EditProperties,
+    Review,
+    Message,
+} from "./pages";
+
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((config) => {
@@ -132,7 +140,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      {/* <GitHubBanner /> */}
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -144,28 +152,68 @@ function App() {
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
-                resources={[
+                resources={[                           
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
+                    name: "Dashboard",
+                    list: "/home",
+                    // create: "/blog-posts/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
                     meta: {
-                      canDelete: true,
+                      icon: <DashboardRoundedIcon />,
                     },
                   },
                   {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
+                    name: "Properties",
+                    list: "/properties",
+                    // create: "/blog-posts/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
                     meta: {
-                      canDelete: true,
+                      icon: <HomeRoundedIcon />,
                     },
                   },
-                ]}
+                  {
+                    name: "Agent",
+                    list: "/agent",
+                    // create: "/blog-posts/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
+                    meta: {
+                      icon: <PeopleAltRoundedIcon />,
+                    },
+                  },
+                  {
+                    name: "Reviews",
+                    list: "/reviews",
+                    // create: "/blog-posts/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
+                    meta: {
+                      icon: <StarRoundedIcon />,
+                    },
+                  },
+                  {
+                    name: "Messages",
+                    list: "/message",
+                    // create: "/blog-posts/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
+                    meta: {
+                      icon: <TextsmsRoundedIcon />,
+                    },
+                  },
+                  {
+                    name: "MyProfile",
+                    list: "/profile",
+                    // create: "/blog-posts/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
+                    meta: {
+                      icon: <AccountCircleRoundedIcon />,
+                    },
+                  },
+                ]}             
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
@@ -179,7 +227,10 @@ function App() {
                         key="authenticated-inner"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayout Header={Header}>
+                        <ThemedLayout 
+                        Header={Header}
+                        Title={({collapsed}) => <Title collapsed={collapsed}/>}
+                        >
                           <Outlet />
                         </ThemedLayout>
                       </Authenticated>
@@ -187,20 +238,27 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="blog_posts" />}
+                      element={<NavigateToResource resource="Dashboard" />}
                     />
-                    <Route path="/blog-posts">
-                      <Route index element={<BlogPostList />} />
-                      <Route path="create" element={<BlogPostCreate />} />
-                      <Route path="edit/:id" element={<BlogPostEdit />} />
-                      <Route path="show/:id" element={<BlogPostShow />} />
+                    <Route path="/home">
+                      <Route index element={<Home />} />
+                    </Route>      
+                    <Route path="/properties">
+                      <Route index element={<AllProperties />} />
                     </Route>
-                    <Route path="/categories">
-                      <Route index element={<CategoryList />} />
-                      <Route path="create" element={<CategoryCreate />} />
-                      <Route path="edit/:id" element={<CategoryEdit />} />
-                      <Route path="show/:id" element={<CategoryShow />} />
+                    <Route path="/agent">
+                      <Route index element={<Agent />} />
                     </Route>
+                    <Route path="/reviews">
+                      <Route index element={<Review />} />
+                    </Route>
+                    <Route path="/message">
+                      <Route index element={<Message />} />
+                    </Route>
+                    <Route path="/profile">
+                      <Route index element={<AgentProfile />} />
+                    </Route>        
+                    
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
                   <Route
