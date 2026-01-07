@@ -61,7 +61,7 @@ This project is developed as a portfolio project to demonstrate real-world full-
 
 > Dashboard UI (Frontend)
 
-![Dashboard Preview](./screenshots/dashboard.png)
+![Dashboard Preview](https://github.com/user-attachments/assets/321594ee-8c05-4028-a0fb-d9b20f428828)
 
 > UI and features are subject to change during development.
 
