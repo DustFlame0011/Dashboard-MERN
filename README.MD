@@ -1,49 +1,79 @@
-# frontend
+# 📊 Full-Stack MERN Dashboard
 
-<div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
-    </a>
-</div>
-<br/>
+> 🚧 Work in Progress
 
-This [Refine](https://github.com/refinedev/refine) project was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app).
+A modern **Full-stack Dashboard Application** built with the **MERN stack**, focusing on clean UI, authentication, and scalable system design.  
+This project is developed as a portfolio project to demonstrate real-world full-stack development skills.
 
-## Getting Started
+---
 
-A React Framework for building internal tools, admin panels, dashboards & B2B apps with unmatched flexibility ✨
+## 🧩 Tech Badges
 
-Refine's hooks and components simplifies the development process and eliminates the repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=flat-square)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![Material UI](https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=mui)
+![ApexCharts](https://img.shields.io/badge/ApexCharts-5A5A5A?style=flat-square)
+![Google Auth](https://img.shields.io/badge/Google%20Auth-OAuth2-4285F4?style=flat-square&logo=google)
 
-## Available Scripts
+---
 
-### Running the development server.
+## ✨ Features
 
-```bash
-    npm run dev
-```
+### 🔐 Authentication
+- Google Authentication (OAuth 2.0)
+- JWT-based authentication flow
+- Protected routes for authenticated users
 
-### Building for production.
+### 📊 Dashboard
+- Overview statistic cards
+- Monthly revenue chart
+- Donut & bar chart visualizations
+- Referral source summary
 
-```bash
-    npm run build
-```
+### 🧱 System Design
+- RESTful API concept
+- Modular and scalable structure
+- Frontend & backend separation
 
-### Running the production server.
+---
 
-```bash
-    npm run start
-```
+## 🛠️ Tech Stack
 
-## Learn More
+### Frontend
+- React
+- Material UI (MUI)
+- ApexCharts
+- Axios
 
-To learn more about **Refine**, please check out the [Documentation](https://refine.dev/docs)
+### Backend (Concept)
+- Node.js & Express
+- MongoDB with Mongoose
+- JWT Authentication
+- Google OAuth 2.0
+- RESTful API design
 
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-- **Material UI** [Docs](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **Google Auth Provider** [Docs](https://refine.dev/docs/core/providers/auth-provider/)
+---
 
-## License
+## 📸 Preview
 
-MIT
+> Dashboard UI (Frontend)
+
+![Dashboard Preview](./screenshots/dashboard.png)
+
+> UI and features are subject to change during development.
+
+---
+
+## 🎯 Project Purpose
+
+- Practice full-stack MERN development
+
+- Build a realistic admin dashboard
+
+- Apply authentication & authorization concepts
+
+- Use as a portfolio project for junior full-stack roles
+
