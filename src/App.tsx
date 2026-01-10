@@ -13,14 +13,14 @@ import {
   useNotificationProvider,
 } from "@refinedev/mui";
 
-import { ThemedLayout } from "./components/layout"
-import Title from "./components/header/title"
-import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
-import StarRoundedIcon from '@mui/icons-material/StarRounded';
-import TextsmsRoundedIcon from '@mui/icons-material/TextsmsRounded';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { ThemedLayout } from "./components/layout";
+import Title from "./components/header/title";
+import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import TextsmsRoundedIcon from "@mui/icons-material/TextsmsRounded";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -38,18 +38,18 @@ import { CredentialResponse } from "./interfaces/google";
 import { Login } from "./pages/login";
 import { dataProvider } from "./providers/data";
 import { parseJwt } from "./utils/parse-jwt";
-import {
-    AgentProfile,
-    Agent,
-    PropertyDetail,
-    AllProperties,
-    Home,
-    CreateProperties,
-    EditProperties,
-    Review,
-    Message,
-} from "./pages";
 
+import {
+  AgentProfile,
+  Agent,
+  PropertyDetail,
+  AllProperties,
+  Home,
+  CreateProperties,
+  EditProperties,
+  Review,
+  Message,
+} from "./pages";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((config) => {
@@ -67,14 +67,27 @@ function App() {
       const profileObj = credential ? parseJwt(credential) : null;
 
       if (profileObj) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            ...profileObj,
+        const response = await fetch("http://localhost:8080/api/v1/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: profileObj.name,
+            email: profileObj.email,
             avatar: profileObj.picture,
-          })
-        );
+          }),
+        });
 
+        const data = await response.json();
+        if (response.status === 200) {
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              ...profileObj,
+              avatar: profileObj.picture,
+              userid: data._id,
+            })
+          );
+        }
         localStorage.setItem("token", `${credential}`);
 
         return {
@@ -152,7 +165,7 @@ function App() {
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
-                resources={[                           
+                resources={[
                   {
                     name: "Dashboard",
                     list: "/home",
@@ -213,7 +226,7 @@ function App() {
                       icon: <AccountCircleRoundedIcon />,
                     },
                   },
-                ]}             
+                ]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
@@ -227,9 +240,11 @@ function App() {
                         key="authenticated-inner"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayout 
-                        Header={Header}
-                        Title={({collapsed}) => <Title collapsed={collapsed}/>}
+                        <ThemedLayout
+                          Header={Header}
+                          Title={({ collapsed }) => (
+                            <Title collapsed={collapsed} />
+                          )}
                         >
                           <Outlet />
                         </ThemedLayout>
@@ -242,7 +257,7 @@ function App() {
                     />
                     <Route path="/home">
                       <Route index element={<Home />} />
-                    </Route>      
+                    </Route>
                     <Route path="/properties">
                       <Route index element={<AllProperties />} />
                       <Route path="create" element={<CreateProperties />} />
@@ -258,8 +273,8 @@ function App() {
                     </Route>
                     <Route path="/profile">
                       <Route index element={<AgentProfile />} />
-                    </Route>        
-                    
+                    </Route>
+
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
                   <Route
