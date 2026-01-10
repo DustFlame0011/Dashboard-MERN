@@ -1,2 +1,2 @@
 export const API_URL =
-  import.meta.env.VITE_API_URL || "https://api.fake-rest.refine.dev";
+  import.meta.env.VITE_API_URL || "http://localhost:8080/api/v1";
