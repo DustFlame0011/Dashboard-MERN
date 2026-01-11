@@ -1,19 +1,45 @@
-import React from 'react'
-import { CustomButton } from '../components'
-import { useNavigate } from 'react-router'
-import { Add } from '@mui/icons-material';
+import React from "react";
+import { PropertyCard } from "../components";
+import { useNavigate } from "react-router";
+import { useTable } from "@refinedev/core";
+import { Box, Typography } from "@mui/material";
 
-const AllProperties= () => {
+const AllProperties = () => {
   const navigate = useNavigate();
-  return (
-    <CustomButton 
-    title='Add Property'
-    handleClick={() => navigate("/properties/create")}
-    backgroundColor='#475be8'
-    color='#fcfcfc'
-    icon={<Add />}
-    />
-  )
-}
 
-export default AllProperties
+  const {
+    tableQueryResult: { data, isLoading, isError },
+    current,
+    setCurrent,
+    pageCount,
+    sorter,
+    setSorter,
+    filters,
+    setFilters,
+  } = useTable();
+
+  const currentPrice = sorter.find((item) => item.field === "price")?.order;
+
+  const AllProperties = data?.data ?? [];
+  if (isLoading) return <Typography>isLoading...</Typography>;
+  if (isError) return <Typography>isError...</Typography>;
+
+  return (
+    <Box>
+      <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+        {AllProperties.map((property) => (
+          <PropertyCard
+            key={property._id}
+            id={property._id}
+            title={property.title}
+            location={property.location}
+            price={property.price}
+            photo={property.photo}
+          />
+        ))}
+      </Box>
+    </Box>
+  );
+};
+
+export default AllProperties;
