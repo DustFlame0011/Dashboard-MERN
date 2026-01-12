@@ -1,4 +1,12 @@
-import { Card, CardMedia } from "@mui/material";
+import { Place } from "@mui/icons-material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { Link } from "react-router";
 
@@ -20,8 +28,9 @@ const PropertyCard = ({
   return (
     <Card
       component={Link}
-      to={`/property/show/${id}`}
+      to={`/properties/show/${id}`}
       sx={{
+        textDecoration: "none",
         maxWidth: "330px",
         padding: "10px",
         "&:hover": {
@@ -38,6 +47,44 @@ const PropertyCard = ({
         alt={title}
         sx={{ borderRadius: "10px" }}
       />
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          gap: "10px",
+          padding: "5px",
+        }}
+      >
+        <Stack direction={"column"} gap={1}>
+          <Typography fontSize={16} fontWeight={500} color={"#11142d"}>
+            {title}
+          </Typography>
+          <Stack direction={"row"} gap={0.5} alignItems={"flex-start"}>
+            <Place
+              sx={{
+                fontSize: "18",
+                color: "#111142d",
+                marginTop: 0.5,
+              }}
+            />
+            <Typography fontSize={16} fontWeight={500} color={"#11142d"}>
+              {location}
+            </Typography>
+          </Stack>
+        </Stack>
+        <Box
+          px={1.5}
+          py={0.5}
+          borderRadius={1}
+          bgcolor={"#dadefa"}
+          height="fit-content"
+        >
+          <Typography fontSize={12} fontWeight={600} color={"#475be8"}>
+            {price}
+          </Typography>
+        </Box>
+      </CardContent>
     </Card>
   );
 };

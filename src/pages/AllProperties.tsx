@@ -1,14 +1,13 @@
 import React from "react";
 import { PropertyCard } from "../components";
-import { useNavigate } from "react-router";
-import { useTable } from "@refinedev/core";
+import { useTable, useNavigation } from "@refinedev/core";
 import { Box, Typography } from "@mui/material";
 
 const AllProperties = () => {
-  const navigate = useNavigate();
+  const { navigate } = useNavigation();
 
   const {
-    tableQueryResult: { data, isLoading, isError },
+    tableQuery: { data, isLoading, isError },
     current,
     setCurrent,
     pageCount,
@@ -18,16 +17,16 @@ const AllProperties = () => {
     setFilters,
   } = useTable();
 
-  const currentPrice = sorter.find((item) => item.field === "price")?.order;
+  // const currentPrice = sorter.find((item) => item.field === "price")?.order;
 
-  const AllProperties = data?.data ?? [];
+  const allProperties = data?.data ?? [];
   if (isLoading) return <Typography>isLoading...</Typography>;
   if (isError) return <Typography>isError...</Typography>;
 
   return (
     <Box>
       <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-        {AllProperties.map((property) => (
+        {allProperties.map((property) => (
           <PropertyCard
             key={property._id}
             id={property._id}
