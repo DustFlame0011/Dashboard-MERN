@@ -77,3 +77,13 @@ This project is developed as a portfolio project to demonstrate real-world full-
 
 - Use as a portfolio project for junior full-stack roles
 
+---
+
+## Lesson learned
+
+- Refine routing & CRUD must use Refine navigation hooks
+
+- Resource names are case-sensitive
+
+- Edit & Create flows should not share the same logic without checking id
+
