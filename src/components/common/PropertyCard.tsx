@@ -64,7 +64,7 @@ const PropertyCard = ({
             <Place
               sx={{
                 fontSize: "18",
-                color: "#111142d",
+                color: "#11142d",
                 marginTop: 0.5,
               }}
             />

@@ -24,7 +24,7 @@ const checkImage = (url: string) => {
 };
 
 const PropertyDetail = () => {
-  const { edit } = useNavigation();
+  const { edit, navigate } = useNavigation();
   const { data: user } = useGetIdentity<any>();
 
   const {
@@ -33,9 +33,9 @@ const PropertyDetail = () => {
   const { id } = useParams();
   const { mutate } = useDelete<any>();
 
-  const Properties = data?.data ?? [];
+  const propertyDetails = data?.data ?? {};
 
-  const isCurrentUser = user?.email === Properties.creator?.email;
+  const isCurrentUser = user?.email === propertyDetails.creator?.email;
 
   const handleDeleteProperty = () => {
     const response = confirm("Are you would like to delete this Property?");
@@ -58,25 +58,21 @@ const PropertyDetail = () => {
   if (isError) return <Typography>isError...</Typography>;
 
   return (
-    <Box
-      borderRadius={"15px"}
-      padding="20px"
-      bgcolor="#fcfcfc"
-      width="fit-content"
-    >
+    <Box borderRadius={"15px"} padding="20px" bgcolor="#fcfcfc" width="100%">
       <Typography fontSize={25} fontWeight={500} color={"#11142d"}>
         Detail
       </Typography>
       <Box
         display={"flex"}
         flexDirection={{ xs: "column", lg: "row" }}
+        justifyContent={"space-between"}
         gap={10}
         mt="10px"
       >
-        <Box flex={1} maxWidth={780}>
+        <Box flex={1} width={"100%"}>
           <img
-            src={Properties.photo}
-            width={780}
+            src={propertyDetails.photo}
+            width={"100%"}
             height={546}
             style={{ objectFit: "cover", borderRadius: "10px" }}
           />
@@ -93,7 +89,7 @@ const PropertyDetail = () => {
                 color={"#11142d"}
                 textTransform={"capitalize"}
               >
-                {Properties.propertyType}
+                {propertyDetails.propertyType}
               </Typography>
               <Box>
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -114,7 +110,7 @@ const PropertyDetail = () => {
                   color={"#11142d"}
                   mt={"10px"}
                 >
-                  {Properties.title}
+                  {propertyDetails.title}
                 </Typography>
                 <Stack
                   mt={0.5}
@@ -124,7 +120,7 @@ const PropertyDetail = () => {
                 >
                   <Place sx={{ color: "#808191" }} />
                   <Typography fontSize={14} color={"#11142d"}>
-                    {Properties.location}
+                    {propertyDetails.location}
                   </Typography>
                 </Stack>
               </Box>
@@ -139,7 +135,7 @@ const PropertyDetail = () => {
                 </Typography>
                 <Stack direction={"row"} alignItems={"flex-end"} gap={1}>
                   <Typography fontSize={25} fontWeight={600} color={"#475be8"}>
-                    ${Properties.price}
+                    ${propertyDetails.price}
                   </Typography>
                   <Typography fontSize={14} color={"#808191"} mb={0.5}>
                     for one day
@@ -157,14 +153,14 @@ const PropertyDetail = () => {
                 Description
               </Typography>
               <Typography fontSize={16} fontWeight={600} color={"#808191"}>
-                {Properties.description}
+                {propertyDetails.description}
               </Typography>
             </Stack>
           </Box>
         </Box>
         <Box
           flex={1}
-          maxWidth={326}
+          maxWidth={{ xs: "100%", lg: "380px" }}
           width={"100%"}
           display={"flex"}
           flexDirection={"column"}
@@ -186,8 +182,8 @@ const PropertyDetail = () => {
             >
               <img
                 src={
-                  checkImage(Properties.creator.avatar)
-                    ? Properties.creator.avatar
+                  checkImage(propertyDetails.creator?.avatar || "")
+                    ? propertyDetails.creator.avatar
                     : "https://img.freepik.com/premium-photo/smiling-young-man-outdoors_171337-49506.jpg"
                 }
                 width={90}
@@ -199,7 +195,7 @@ const PropertyDetail = () => {
               />
               <Box mt={"15px"}>
                 <Typography fontSize={16} fontWeight={600} color={"#11142d"}>
-                  {Properties.creator.name}
+                  {propertyDetails.creator?.name}
                 </Typography>
                 <Typography
                   mt={"2px"}
@@ -226,7 +222,7 @@ const PropertyDetail = () => {
                 fontWeight={600}
                 color={"#11142d"}
               >
-                {Properties.creator.allProperties.length} Properties
+                {propertyDetails.creator?.AllProperties?.length} Properties
               </Typography>
             </Stack>
             <Stack
@@ -243,7 +239,7 @@ const PropertyDetail = () => {
                 fullWidth
                 icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                 handleClick={() => {
-                  edit("properties", Properties._id);
+                  edit("properties", propertyDetails._id);
                 }}
               />
               <CustomButton
