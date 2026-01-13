@@ -177,11 +177,11 @@ function App() {
                     },
                   },
                   {
-                    name: "Properties",
+                    name: "properties",
                     list: "/properties",
                     create: "/properties/create",
-                    // edit: "/blog-posts/edit/:id",
-                    // show: "/blog-posts/show/:id",
+                    show: "/properties/show/:id",
+                    edit: "/properties/edit/:id",
                     meta: {
                       icon: <HomeRoundedIcon />,
                     },
@@ -261,6 +261,8 @@ function App() {
                     <Route path="/properties">
                       <Route index element={<AllProperties />} />
                       <Route path="create" element={<CreateProperties />} />
+                      <Route path="show/:id" element={<PropertyDetail />} />
+                      <Route path="edit/:id" element={<CreateProperties />} />
                     </Route>
                     <Route path="/agent">
                       <Route index element={<Agent />} />
