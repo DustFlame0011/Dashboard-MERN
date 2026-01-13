@@ -16,7 +16,7 @@ const CreateProperties = () => {
     handleSubmit,
   } = useForm({
     refineCoreProps: {
-      resource: "Properties",
+      resource: "properties",
     },
   });
   const handleImageChange = (file: File) => {

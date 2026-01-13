@@ -1,8 +1,21 @@
-import { ChatBubble, Edit, Place, Star } from "@mui/icons-material";
+import {
+  ChatBubble,
+  Delete,
+  Edit,
+  Phone,
+  Place,
+  Star,
+} from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
-import { useGetIdentity, useNavigation, useShow } from "@refinedev/core";
+import {
+  useDelete,
+  useGetIdentity,
+  useNavigation,
+  useShow,
+} from "@refinedev/core";
 import React from "react";
 import CustomButton from "../components/common/CustomButton";
+import { useParams } from "react-router";
 
 const checkImage = (url: string) => {
   const image = new Image();
@@ -17,10 +30,29 @@ const PropertyDetail = () => {
   const {
     query: { data, isLoading, isError },
   } = useShow<any>();
+  const { id } = useParams();
+  const { mutate } = useDelete<any>();
 
   const Properties = data?.data ?? [];
 
   const isCurrentUser = user?.email === Properties.creator?.email;
+
+  const handleDeleteProperty = () => {
+    const response = confirm("Are you would like to delete this Property?");
+    if (response) {
+      mutate(
+        {
+          resource: "properties",
+          id: id as string,
+        },
+        {
+          onSuccess: () => {
+            navigate("/properties");
+          },
+        }
+      );
+    }
+  };
 
   if (isLoading) return <Typography>isLoading...</Typography>;
   if (isError) return <Typography>isError...</Typography>;
@@ -212,11 +244,29 @@ const PropertyDetail = () => {
                 icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                 handleClick={() => {
                   edit("properties", Properties._id);
-                  // go({ to: `/properties/edit/${Properties._id}` });
+                }}
+              />
+              <CustomButton
+                title={!isCurrentUser ? "Call" : "Delete"}
+                backgroundColor={!isCurrentUser ? "#2ED480" : "#d42e2e"}
+                color="#fcfcfc"
+                fullWidth
+                icon={!isCurrentUser ? <Phone /> : <Delete />}
+                handleClick={() => {
+                  if (isCurrentUser) handleDeleteProperty();
                 }}
               />
             </Stack>
           </Stack>
+          <Stack>
+            <img src="https://japanalytic.com/wp-content/uploads/2021/01/Screen-Shot-2021-01-28-at-6.33.23-PM-816x764.png" />
+          </Stack>
+          <CustomButton
+            title="Book Now"
+            backgroundColor="#475be8"
+            color="#fcfcfc"
+            fullWidth
+          />
         </Box>
       </Box>
     </Box>
