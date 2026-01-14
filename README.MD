@@ -87,3 +87,19 @@ This project is developed as a portfolio project to demonstrate real-world full-
 
 - Edit & Create flows should not share the same logic without checking id
 
+- Defining clear API expectations
+
+- Logging requests/responses during development
+
+- Creating proper abstractions (data providers) when needed
+
+- Testing each feature individually before combining them
+
+---
+
+## Resources that helped:
+
+- [Refine Data Provider Documentation](https://refine.dev/core/docs/data/data-provider/) 
+- [Express req.query Documentation](https://expressjs.com/en/api.html#req.query)
+- [MongoDB Query Operators](https://www.mongodb.com/docs/manual/reference/mql/query-predicates/comparison/)
+
