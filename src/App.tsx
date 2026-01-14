@@ -51,15 +51,15 @@ import {
   Message,
 } from "./pages";
 
-const axiosInstance = axios.create();
-axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (config.headers) {
-    config.headers["Authorization"] = `Bearer ${token}`;
-  }
+// const axiosInstance = axios.create();
+// axiosInstance.interceptors.request.use((config) => {
+//   const token = localStorage.getItem("token");
+//   if (config.headers) {
+//     config.headers["Authorization"] = `Bearer ${token}`;
+//   }
 
-  return config;
-});
+//   return config;
+// });
 
 function App() {
   const authProvider: AuthProvider = {
