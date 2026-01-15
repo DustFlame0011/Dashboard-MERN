@@ -1,16 +1,12 @@
 # 📊 Full-Stack MERN Dashboard
 
 ## DEMO
-*Property sort, search, and filter*
-(https://github.com/user-attachments/assets/ed00220a-81f3-4a33-96e3-b8d146bfc794)
 
-*Add Property*
+[Demo](https://github.com/user-attachments/assets/ed00220a-81f3-4a33-96e3-b8d146bfc794)
 
-(https://github.com/user-attachments/assets/9c17b330-d2ae-4eb3-b270-6b4d02a8caf9)
+[Demo](https://github.com/user-attachments/assets/9c17b330-d2ae-4eb3-b270-6b4d02a8caf9)
 
-*Edit and Delete Property*
-
-(https://github.com/user-attachments/assets/f881e45e-cd52-456c-bda2-9a3b6663f454)
+[Demo](https://github.com/user-attachments/assets/f881e45e-cd52-456c-bda2-9a3b6663f454)
 
 A modern **Full-stack Dashboard Application** built with the **MERN stack**, focusing on clean UI, authentication, and scalable system design.  
 This project is developed as a portfolio project to demonstrate real-world full-stack development skills.
