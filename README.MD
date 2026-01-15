@@ -2,11 +2,11 @@
 
 ## DEMO
 
-[Demo](https://github.com/user-attachments/assets/ed00220a-81f3-4a33-96e3-b8d146bfc794)
+[Demo](https://github.com/user-attachments/assets/119a8004-3852-4bc8-8a64-22e0554b1f88)
 
-[Demo](https://github.com/user-attachments/assets/9c17b330-d2ae-4eb3-b270-6b4d02a8caf9)
+[Demo](https://github.com/user-attachments/assets/01dbd4b9-2e0b-4ed5-a689-7633b588904d)
 
-[Demo](https://github.com/user-attachments/assets/f881e45e-cd52-456c-bda2-9a3b6663f454)
+[Demo](https://github.com/user-attachments/assets/0b3debe9-0968-4a74-828b-adc9b78ead23)
 
 A modern **Full-stack Dashboard Application** built with the **MERN stack**, focusing on clean UI, authentication, and scalable system design.  
 This project is developed as a portfolio project to demonstrate real-world full-stack development skills.
