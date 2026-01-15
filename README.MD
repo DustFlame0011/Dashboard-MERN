@@ -1,6 +1,16 @@
 # 📊 Full-Stack MERN Dashboard
 
-> 🚧 Work in Progress
+## DEMO
+*Property sort, search, and filter*
+(https://github.com/user-attachments/assets/ed00220a-81f3-4a33-96e3-b8d146bfc794)
+
+*Add Property*
+
+(https://github.com/user-attachments/assets/9c17b330-d2ae-4eb3-b270-6b4d02a8caf9)
+
+*Edit and Delete Property*
+
+(https://github.com/user-attachments/assets/f881e45e-cd52-456c-bda2-9a3b6663f454)
 
 A modern **Full-stack Dashboard Application** built with the **MERN stack**, focusing on clean UI, authentication, and scalable system design.  
 This project is developed as a portfolio project to demonstrate real-world full-stack development skills.
@@ -24,7 +34,6 @@ This project is developed as a portfolio project to demonstrate real-world full-
 
 ### 🔐 Authentication
 - Google Authentication (OAuth 2.0)
-- JWT-based authentication flow
 - Protected routes for authenticated users
 
 ### 📊 Dashboard
@@ -51,19 +60,8 @@ This project is developed as a portfolio project to demonstrate real-world full-
 ### Backend (Concept)
 - Node.js & Express
 - MongoDB with Mongoose
-- JWT Authentication
 - Google OAuth 2.0
 - RESTful API design
-
----
-
-## 📸 Preview
-
-> Dashboard UI (Frontend)
-
-![Dashboard Preview](https://github.com/user-attachments/assets/321594ee-8c05-4028-a0fb-d9b20f428828)
-
-> UI and features are subject to change during development.
 
 ---
 
@@ -71,7 +69,7 @@ This project is developed as a portfolio project to demonstrate real-world full-
 
 - Practice full-stack MERN development
 
-- Build a realistic admin dashboard
+- Build a realistic admin dashboard UI
 
 - Apply authentication & authorization concepts
 
